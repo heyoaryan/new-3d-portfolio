@@ -75,14 +75,14 @@ function Page() {
         >
           <h2 className="text-3xl font-semibold mb-6">Hackathon Journey</h2>
           <p className="text-zinc-400 leading-relaxed text-lg mb-4">
-            Over the past few years, I've immersed myself in the competitive world of hackathons, 
+            Over the past few years, I&apos;ve immersed myself in the competitive world of hackathons, 
             participating in 20+ events that have shaped me as a developer and problem-solver. 
             These experiences have taught me the importance of rapid prototyping, teamwork, and 
             thinking outside the box.
           </p>
           <p className="text-zinc-400 leading-relaxed text-lg mb-4">
             From local competitions to national-level events like Smart India Hackathon, each 
-            hackathon has been a learning opportunity. I've built projects ranging from mental 
+            hackathon has been a learning opportunity. I&apos;ve built projects ranging from mental 
             health chatbots with emotional intelligence to travel planning platforms and innovative 
             web applications.
           </p>
