@@ -25,7 +25,7 @@ const config = {
   ],
   author: "Aryan Singh Thakur",
   email: "iamaryan721@gmail.com",
-  site: "https://nareshkhatri.site",
+  site: "https://aryansinghthakur.dev", // Update this with your actual domain
 
   get ogImg() {
     return this.site + "/assets/seo/og-image.png";
