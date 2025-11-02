@@ -53,21 +53,52 @@ const SocketContextProvider = ({ children }: { children: ReactNode }) => {
 
   // SETUP SOCKET.IO
   useEffect(() => {
-    const username =  localStorage.getItem("username") || generateRandomCursor().name
-    const socket = io(process.env.NEXT_PUBLIC_WS_URL!, {
-      query: { username },
-    });
-    setSocket(socket);
-    socket.on("connect", () => {});
-    socket.on("msgs-receive-init", (msgs) => {
-      setMsgs(msgs);
-    });
-    socket.on("msg-receive", (msgs) => {
-      setMsgs((p) => [...p, msgs]);
-    });
-    return () => {
-      socket.disconnect();
-    };
+    // Only connect if WebSocket URL is configured
+    if (!process.env.NEXT_PUBLIC_WS_URL) {
+      console.log("Socket.io server not configured. Skipping connection.");
+      return;
+    }
+
+    try {
+      const username = localStorage.getItem("username") || generateRandomCursor().name;
+      const socket = io(process.env.NEXT_PUBLIC_WS_URL, {
+        query: { username },
+        autoConnect: true,
+        reconnection: true,
+        reconnectionAttempts: 3,
+        reconnectionDelay: 1000,
+      });
+      
+      setSocket(socket);
+      
+      socket.on("connect", () => {
+        console.log("Socket.io connected");
+      });
+      
+      socket.on("connect_error", (error) => {
+        console.log("Socket.io connection error (this is expected if server is not running):", error.message);
+      });
+      
+      socket.on("disconnect", () => {
+        console.log("Socket.io disconnected");
+      });
+      
+      socket.on("msgs-receive-init", (msgs) => {
+        setMsgs(msgs);
+      });
+      
+      socket.on("msg-receive", (msgs) => {
+        setMsgs((p) => [...p, msgs]);
+      });
+      
+      return () => {
+        if (socket.connected) {
+          socket.disconnect();
+        }
+      };
+    } catch (error) {
+      console.log("Socket.io initialization error:", error);
+    }
   }, []);
 
   return (

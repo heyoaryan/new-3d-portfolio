@@ -63,7 +63,13 @@ This site is deployed on Vercel. For your own deployment, follow these steps:
 
 1. Push your code to a GitHub repository.
 2. Connect your repository to Vercel.
-3. Vercel will handle the deployment process.
+3. **Add Environment Variables in Vercel Dashboard:**
+   - Go to your project → Settings → Environment Variables
+   - Add `RESEND_API_KEY` with your Resend API key value
+   - Select all environments (Production, Preview, Development)
+4. Vercel will handle the deployment process.
+
+**Note:** The contact form requires `RESEND_API_KEY` to send emails. Make sure to add it in Vercel's environment variables section.
 
 ## 🤝 Contributing
 

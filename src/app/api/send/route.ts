@@ -12,20 +12,54 @@ const Email = z.object({
 });
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    console.log(body);
+    // Check if Resend API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is not configured");
+      return new Response(
+        JSON.stringify({ error: "Email service is not configured. Please contact directly at iamaryan721@gmail.com" }),
+        { 
+          status: 503,
+          headers: { "Content-Type": "application/json" }
+        }
+      );
+    }
+
+    let body;
+    try {
+      body = await req.json();
+    } catch (parseError) {
+      return new Response(
+        JSON.stringify({ error: "Invalid request format. Please check your input." }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" }
+        }
+      );
+    }
     const {
       success: zodSuccess,
       data: zodData,
       error: zodError,
     } = Email.safeParse(body);
-    if (!zodSuccess)
-      return Response.json({ error: zodError?.message }, { status: 400 });
+    
+    if (!zodSuccess) {
+      return new Response(
+        JSON.stringify({ error: zodError?.errors[0]?.message || "Validation failed" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" }
+        }
+      );
+    }
 
+    console.log("Attempting to send email to:", config.email);
+    console.log("From:", zodData.email, "Name:", zodData.fullName);
+    
     const { data: resendData, error: resendError } = await resend.emails.send({
-      from: "Porfolio <onboarding@resend.dev>",
+      from: process.env.RESEND_FROM_EMAIL || "Portfolio <onboarding@resend.dev>",
       to: [config.email],
-      subject: "Contact me from portfolio",
+      replyTo: zodData.email,
+      subject: `New Contact Form Message from ${zodData.fullName}`,
       react: EmailTemplate({
         fullName: zodData.fullName,
         email: zodData.email,
@@ -34,11 +68,39 @@ export async function POST(req: Request) {
     });
 
     if (resendError) {
-      return Response.json({ resendError }, { status: 500 });
+      console.error("Resend API error details:", JSON.stringify(resendError, null, 2));
+      return new Response(
+        JSON.stringify({ 
+          error: `Failed to send email: ${resendError.message || "Unknown error"}. Please contact directly at iamaryan721@gmail.com` 
+        }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json" }
+        }
+      );
     }
 
-    return Response.json(resendData);
-  } catch (error) {
-    return Response.json({ error }, { status: 500 });
+    console.log("Email sent successfully:", resendData);
+
+    return new Response(
+      JSON.stringify(resendData),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+  } catch (error: any) {
+    console.error("Contact form error - Full error:", error);
+    console.error("Error stack:", error?.stack);
+    console.error("Error name:", error?.name);
+    return new Response(
+      JSON.stringify({ 
+        error: error?.message || `An unexpected error occurred: ${error?.toString() || "Unknown error"}. Please try again later or contact directly at iamaryan721@gmail.com` 
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" }
+      }
+    );
   }
 }

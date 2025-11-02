@@ -20,6 +20,44 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Client-side validation
+    if (fullName.trim().length < 2) {
+      toast({
+        title: "Validation Error",
+        description: "Full name must be at least 2 characters long.",
+        variant: "destructive",
+        className: cn(
+          "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
+        ),
+      });
+      return;
+    }
+
+    if (!email.trim() || !email.includes("@")) {
+      toast({
+        title: "Validation Error",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+        className: cn(
+          "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
+        ),
+      });
+      return;
+    }
+
+    if (message.trim().length < 10) {
+      toast({
+        title: "Validation Error",
+        description: "Message must be at least 10 characters long.",
+        variant: "destructive",
+        className: cn(
+          "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
+        ),
+      });
+      return;
+    }
+
     setLoading(true);
     try {
       const res = await fetch("/api/send", {
@@ -28,38 +66,57 @@ const ContactForm = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          fullName,
-          email,
-          message,
+          fullName: fullName.trim(),
+          email: email.trim(),
+          message: message.trim(),
         }),
       });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
+      
+      // Check if response is JSON
+      const contentType = res.headers.get("content-type");
+      let data;
+      
+      if (contentType && contentType.includes("application/json")) {
+        data = await res.json();
+      } else {
+        // If not JSON, it's likely an HTML error page
+        const text = await res.text();
+        console.error("Non-JSON response:", text.substring(0, 200));
+        throw new Error("Server returned an error. Please try again later.");
+      }
+      
+      if (!res.ok || data.error) {
+        throw new Error(data.error || "Failed to send message");
+      }
+      
       toast({
         title: "Thank you!",
         description: "I'll get back to you as soon as possible.",
         variant: "default",
         className: cn("top-0 mx-auto flex fixed md:top-4 md:right-4"),
       });
-      setLoading(false);
+      
       setFullName("");
       setEmail("");
       setMessage("");
+      
       const timer = setTimeout(() => {
         router.push("/");
         clearTimeout(timer);
       }, 1000);
-    } catch (err) {
+    } catch (err: any) {
+      const errorMessage = err?.message || "Something went wrong! Please try again later.";
       toast({
         title: "Error",
-        description: "Something went wrong! Please check the fields.",
+        description: errorMessage,
         className: cn(
           "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
         ),
         variant: "destructive",
       });
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
   return (
     <form className="min-w-7xl mx-auto sm:mt-4" onSubmit={handleSubmit}>
@@ -90,15 +147,21 @@ const ContactForm = () => {
       <div className="grid w-full gap-1.5 mb-4">
         <Label htmlFor="content">Your Message</Label>
         <Textarea
-          placeholder="Tell me about about your project,"
+          placeholder="Tell me about your project..."
           id="content"
           required
+          minLength={10}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <p className="text-sm text-muted-foreground">
-          I&apos;ll never share your data with anyone else. Pinky promise!
-        </p>
+        <div className="flex justify-between items-center">
+          <p className="text-sm text-muted-foreground">
+            I&apos;ll never share your data with anyone else. Pinky promise!
+          </p>
+          <p className={`text-xs ${message.length < 10 ? "text-red-500" : "text-muted-foreground"}`}>
+            {message.length}/10 min characters
+          </p>
+        </div>
       </div>
       <Button
         disabled={loading}
