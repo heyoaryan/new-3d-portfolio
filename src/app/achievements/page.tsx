@@ -159,7 +159,7 @@ function Page() {
           </div>
           <div className="space-y-4 text-zinc-400 leading-relaxed">
             <p>
-              It started with a simple question — <strong className="text-zinc-200">"what can I build in 24 hours?"</strong> 
+              It started with a simple question — <strong className="text-zinc-200">&quot;what can I build in 24 hours?&quot;</strong> 
               That curiosity turned into an obsession. 25+ hackathons later, it&apos;s not just a hobby — 
               it&apos;s shaped how I think, how I code, and how I solve problems under pressure.
             </p>
