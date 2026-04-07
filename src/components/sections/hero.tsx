@@ -51,9 +51,7 @@ const HeroSection = () => {
                           "cursor-default text-edge-outline font-display sm:text-7xl md:text-9xl "
                         )}
                       >
-                        {config.author.split(" ")[0]}
-                        <br className="md:block hiidden" />
-                        {config.author.split(" ")[1]}
+                        Aryan
                         {/* PLEASE hello??
 
                         <br className="md:block hiidden" />
@@ -61,7 +59,7 @@ const HeroSection = () => {
                       </h1>
                     </TooltipTrigger>
                     <TooltipContent
-                      side="top"
+                      side="right"
                       className="dark:bg-white dark:text-black"
                     >
                       theres something waiting for you in devtools
@@ -76,7 +74,7 @@ const HeroSection = () => {
                       "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
                     )}
                   >
-                    A Full Stack Web Developer
+                    A Full Stack Developer
                   </p>
                 </BlurIn>
               </div>

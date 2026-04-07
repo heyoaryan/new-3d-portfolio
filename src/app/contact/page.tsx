@@ -1,72 +1,77 @@
+"use client";
 import React from "react";
+import { BlurIn } from "@/components/reveal-animations";
+import ContactForm from "@/components/ContactForm";
+import { config } from "@/data/config";
+import { Mail } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 function Page() {
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    console.log(event)
-  }
   return (
-    <section>
-      <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-        <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-zinc-200">
-          Contact Me
-        </h2>
-        <form action="#" className="space-y-8">
-          <div>
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              Your email
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-              placeholder="name@flowbite.com"
-              required
-            />
+    <div className="container mx-auto px-4 md:px-[50px] xl:px-[200px] text-zinc-300 pt-20 pb-20 min-h-screen">
+      <BlurIn delay={0.3}>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Let&apos;s Work Together</h1>
+        <p className="text-zinc-400 mb-12 text-lg">
+          Got a project in mind? Drop me a message and let&apos;s make it happen.
+        </p>
+      </BlurIn>
+
+      <div className="grid md:grid-cols-2 gap-12 items-start">
+        {/* Left - Info */}
+        <BlurIn delay={0.5}>
+          <div className="space-y-6">
+            <div className="p-6 rounded-2xl border-[.5px] border-zinc-600" style={{ backdropFilter: "blur(2px)" }}>
+              <div className="flex items-center gap-3 mb-3">
+                <Mail size={22} className="text-zinc-400" />
+                <h3 className="text-lg font-semibold">Email me directly</h3>
+              </div>
+              <a
+                href={`mailto:${config.email}`}
+                className="text-blue-400 hover:text-blue-300 transition-colors text-sm"
+              >
+                {config.email}
+              </a>
+            </div>
+            <div className="p-6 rounded-2xl border-[.5px] border-zinc-600" style={{ backdropFilter: "blur(2px)" }}>
+              <h3 className="text-lg font-semibold mb-2">Response Time</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                I usually respond within 24 hours. For urgent projects, feel free to reach out on WhatsApp directly from the <a href="/craft" className="text-blue-400 hover:text-blue-300">Craft</a> page.
+              </p>
+            </div>
+            <div className="p-6 rounded-2xl border-[.5px] border-zinc-600" style={{ backdropFilter: "blur(2px)" }}>
+              <h3 className="text-lg font-semibold mb-2">What I can help with</h3>
+              <ul className="text-zinc-400 text-sm space-y-1 mt-2">
+                <li>• Frontend Development</li>
+                <li>• Backend Development</li>
+                <li>• Full Website Development</li>
+                <li>• Bug Fixes & Maintenance</li>
+              </ul>
+            </div>
           </div>
-          <div>
-            <label
-              htmlFor="subject"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              Subject
-            </label>
-            <input
-              type="text"
-              id="subject"
-              className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-              placeholder="Let me know how I can help you"
-              required
-            />
-          </div>
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="message"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-            >
-              Your message
-            </label>
-            <textarea
-              id="message"
-              rows={6}
-              className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              placeholder="Leave a comment..."
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-            // onClick={handleSubmit}
-          >
-            Send message
-          </button>
-        </form>
+        </BlurIn>
+
+        {/* Right - Form */}
+        <BlurIn delay={0.7}>
+          <Card className="bg-white/5 dark:bg-black/40 backdrop-blur-sm rounded-2xl border-zinc-700">
+            <CardHeader>
+              <CardTitle className="text-2xl">Send a Message</CardTitle>
+              <CardDescription className="text-zinc-400">
+                Fill in the details and I&apos;ll get back to you soon.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ContactForm />
+            </CardContent>
+          </Card>
+        </BlurIn>
       </div>
-    </section>
+    </div>
   );
 }
 

@@ -27,14 +27,17 @@ const NyanCat = () => {
   };
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "n") spawnDiv();
+      if (e.key === "n" || e.key === "N") spawnDiv();
     };
+    const handleSplineKey = () => spawnDiv();
 
     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("spline-keydown", handleSplineKey);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("spline-keydown", handleSplineKey);
     };
-  });
+  }, []);
 
   return (
     <div className="fixed left-0 top-0 w-screen h-screen overflow-hidden z-[-1]">

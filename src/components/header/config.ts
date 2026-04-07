@@ -7,11 +7,6 @@ const links: Link[] = [
     thumbnail: '/assets/nav-link-previews/landing.png'
   },
   {
-    title: 'About',
-    href: '/#about',
-    thumbnail: '/assets/nav-link-previews/about.png'
-  },
-  {
     title: 'Skills',
     href: '/#skills',
     thumbnail: '/assets/nav-link-previews/skills.png'
@@ -32,9 +27,14 @@ const links: Link[] = [
   //   thumbnail: '/assets/nav-link-previews/testimonials.png'
   // },
   {
-    title: 'Blogs',
-    href: '/blogs',
-    thumbnail: '/assets/nav-link-previews/blog.png',
+    title: 'Achievements',
+    href: '/achievements',
+    thumbnail: '/assets/nav-link-previews/achivements.png',
+  },
+  {
+    title: 'Craft',
+    href: '/craft',
+    thumbnail: '/assets/nav-link-previews/craft.png',
   },
   {
     title: 'Contact',

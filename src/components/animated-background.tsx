@@ -89,7 +89,7 @@ const STATES = {
   contact: {
     desktop: {
       scale: { x: 0.3, y: 0.3, z: 0.3 },
-      position: { x: 500, y: -250, z: 0 },
+      position: { x: 0, y: -40, z: 0 },
       rotation: {
         x: 0,
         y: 0,
@@ -355,6 +355,7 @@ const AnimatedBackground = () => {
       if (skill) setSelectedSkill(skill);
       splineApp.setVariable("heading", skill.label);
       splineApp.setVariable("desc", skill.shortDescription);
+      window.dispatchEvent(new CustomEvent("spline-keydown"));
     });
     splineApp.addEventListener("mouseHover", handleMouseHover);
   };
