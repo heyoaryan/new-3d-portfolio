@@ -70,10 +70,10 @@ const POLICY = [
 
 function Page() {
   return (
-    <div className="container mx-auto px-4 md:px-[50px] xl:px-[200px] text-zinc-300 pt-20 pb-20 min-h-screen">
+    <div className="container mx-auto px-4 md:px-[50px] xl:px-[200px] text-foreground pt-20 pb-20 min-h-screen">
       <BlurIn delay={0.3}>
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Craft</h1>
-        <p className="text-zinc-400 mb-12 text-lg">
+        <p className="text-zinc-500 dark:text-zinc-400 mb-12 text-lg">
           What I build, what I charge, and how I work.
         </p>
       </BlurIn>
@@ -81,13 +81,13 @@ function Page() {
       {/* What I've Built */}
       <BlurIn delay={0.5}>
         <div
-          className="p-8 md:p-10 rounded-2xl border-[.5px] border-zinc-600 mb-12"
+          className="p-8 md:p-10 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 mb-12"
           style={{ backdropFilter: "blur(2px)" }}
         >
           <h2 className="text-3xl font-semibold mb-2">What I&apos;ve Built</h2>
-          <p className="text-zinc-400 mb-8">Real projects, real clients.</p>
+          <p className="text-zinc-500 dark:text-zinc-400 mb-8">Real projects, real clients.</p>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-2xl border-[.5px] border-zinc-600 hover:border-zinc-400 transition-all duration-300">
+            <div className="p-6 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 hover:border-zinc-400 transition-all duration-300">
               <div className="flex items-center gap-3 mb-3">
                 <School size={28} className="text-green-400 flex-shrink-0" />
                 <div>
@@ -95,15 +95,15 @@ function Page() {
                   <p className="text-zinc-500 text-sm">Client — Vinit Singh Thakur</p>
                 </div>
               </div>
-              <p className="text-zinc-400 text-sm leading-relaxed mb-4">
+              <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed mb-4">
                 A complete school website with information about academics, admissions, faculty, and events. Clean and professional design built for parents and students.
               </p>
               <Link href="https://www.greenvalleyconventschool.in" target="_blank"
-                className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors">
+                className="inline-flex items-center gap-2 text-sm text-blue-500 dark:text-blue-400 hover:text-blue-400 dark:hover:text-blue-300 transition-colors">
                 greenvalleyconventschool.in <ExternalLink size={14} />
               </Link>
             </div>
-            <div className="p-6 rounded-2xl border-[.5px] border-zinc-600 hover:border-zinc-400 transition-all duration-300">
+            <div className="p-6 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 hover:border-zinc-400 transition-all duration-300">
               <div className="flex items-center gap-3 mb-3">
                 <ShoppingBag size={28} className="text-pink-400 flex-shrink-0" />
                 <div>
@@ -111,7 +111,7 @@ function Page() {
                   <p className="text-zinc-500 text-sm">Client — Aanchal Mishra</p>
                 </div>
               </div>
-              <p className="text-zinc-400 text-sm leading-relaxed mb-4">
+              <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed mb-4">
                 A full e-commerce website for a fashion brand — product listings, cart, and a smooth shopping experience tailored for the brand&apos;s aesthetic.
               </p>
               <Link href="https://www.navadhafashion.com" target="_blank"
@@ -122,7 +122,7 @@ function Page() {
           </div>
           <div className="mt-8 text-center">
             <Link href="/#projects">
-              <button className="inline-flex items-center gap-2 border border-zinc-600 hover:border-zinc-400 text-zinc-300 hover:text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300">
+              <button className="inline-flex items-center gap-2 border border-zinc-300 dark:border-zinc-600 hover:border-zinc-400 text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300">
                 View More Projects <ExternalLink size={16} />
               </button>
             </Link>
@@ -138,16 +138,16 @@ function Page() {
         {SERVICES.map((service, index) => (
           <BoxReveal key={service.title} delay={0.8 + index * 0.15} width="100%">
             <div
-              className="p-6 md:p-8 rounded-2xl border-[.5px] border-zinc-600 hover:border-zinc-400 transition-all duration-300 h-full flex flex-col"
+              className="p-6 md:p-8 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 hover:border-zinc-400 transition-all duration-300 h-full flex flex-col"
               style={{ backdropFilter: "blur(2px)" }}
             >
               <div className="mb-4">{service.icon}</div>
               <h2 className="text-2xl font-semibold mb-2">{service.title}</h2>
-              <p className="text-lg font-bold text-white mb-4">{service.price}</p>
-              <p className="text-zinc-400 leading-relaxed mb-6">{service.description}</p>
+              <p className="text-lg font-bold mb-4">{service.price}</p>
+              <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6">{service.description}</p>
               <ul className="space-y-2 mt-auto">
                 {service.includes.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-zinc-400 text-sm">
+                  <li key={item} className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 text-sm">
                     <CheckCircle size={16} className="text-green-400 flex-shrink-0" />
                     {item}
                   </li>
@@ -161,7 +161,7 @@ function Page() {
       {/* Policy Section */}
       <BlurIn delay={1.1}>
         <div
-          className="p-8 md:p-10 rounded-2xl border-[.5px] border-zinc-600 mb-12"
+          className="p-8 md:p-10 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 mb-12"
           style={{ backdropFilter: "blur(2px)" }}
         >
           <h2 className="text-3xl font-semibold mb-8">Support & Maintenance Policy</h2>
@@ -170,8 +170,8 @@ function Page() {
               <div key={p.title} className="flex gap-4">
                 {p.icon}
                 <div>
-                  <h3 className="text-lg font-semibold text-zinc-200 mb-1">{p.title}</h3>
-                  <p className="text-zinc-400 leading-relaxed">{p.desc}</p>
+                  <h3 className="text-lg font-semibold mb-1">{p.title}</h3>
+                  <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">{p.desc}</p>
                 </div>
               </div>
             ))}
@@ -182,11 +182,11 @@ function Page() {
       {/* CTA */}
       <BlurIn delay={1.3}>
         <div
-          className="p-8 md:p-10 rounded-2xl border-[.5px] border-zinc-600 text-center"
+          className="p-8 md:p-10 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 text-center"
           style={{ backdropFilter: "blur(2px)" }}
         >
           <h2 className="text-3xl font-semibold mb-4">Ready to build something?</h2>
-          <p className="text-zinc-400 mb-6 text-lg">
+          <p className="text-zinc-500 dark:text-zinc-400 mb-6 text-lg">
             Let&apos;s discuss your project and figure out the best plan for you.
           </p>
           <Link

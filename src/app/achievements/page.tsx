@@ -68,10 +68,10 @@ const HACKATHON_LIST = [
 
 function Page() {
   return (
-    <div className="container mx-auto px-4 md:px-[50px] xl:px-[200px] text-zinc-300 pt-20 pb-20 min-h-screen">
+    <div className="container mx-auto px-4 md:px-[50px] xl:px-[200px] text-foreground pt-20 pb-20 min-h-screen">
       <BlurIn delay={0.3}>
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Achievements</h1>
-        <p className="text-zinc-400 mb-12 text-lg">
+        <p className="text-zinc-500 dark:text-zinc-400 mb-12 text-lg">
           My journey through hackathons, competitions, and real-world problem solving.
         </p>
       </BlurIn>
@@ -81,11 +81,11 @@ function Page() {
         {HACKATHON_STATS.map((stat, index) => (
           <BoxReveal key={stat.label} delay={0.3 + index * 0.1} width="100%">
             <div
-              className="p-5 rounded-2xl border-[.5px] border-zinc-600 text-center flex flex-col items-center gap-2"
+              className="p-5 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 text-center flex flex-col items-center gap-2"
               style={{ backdropFilter: "blur(2px)" }}
             >
               {stat.icon}
-              <p className="text-3xl font-bold text-white">{stat.value}</p>
+              <p className="text-3xl font-bold">{stat.value}</p>
               <p className="text-zinc-500 text-xs">{stat.label}</p>
             </div>
           </BoxReveal>
@@ -97,12 +97,12 @@ function Page() {
         {/* Row 1 - scrolls left */}
         <div className="flex w-max animate-marquee-left gap-4">
           {[...row1, ...row1].map((img, i) => (
-            <div key={i} className="relative w-64 h-40 rounded-xl overflow-hidden border border-zinc-700 flex-shrink-0">
+            <div key={i} className="relative w-64 h-40 rounded-xl overflow-hidden border border-zinc-300 dark:border-zinc-700 flex-shrink-0 group">
               <Image
                 src={`/images/${img}`}
                 alt={img.replace(".png", "")}
                 fill
-                className="object-cover"
+                className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
               />
             </div>
           ))}
@@ -110,27 +110,26 @@ function Page() {
         {/* Row 2 - scrolls right */}
         <div className="flex w-max animate-marquee-right gap-4">
           {[...row2, ...row2].map((img, i) => (
-            <div key={i} className="relative w-64 h-40 rounded-xl overflow-hidden border border-zinc-700 flex-shrink-0">
+            <div key={i} className="relative w-64 h-40 rounded-xl overflow-hidden border border-zinc-300 dark:border-zinc-700 flex-shrink-0 group">
               <Image
                 src={`/images/${img}`}
                 alt={img.replace(".png", "")}
                 fill
-                className="object-cover"
+                className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Top Achievements */}
       <BlurIn delay={0.5}>
-        <h2 className="text-2xl font-semibold mb-6 text-zinc-200">Top Achievements</h2>
+        <h2 className="text-2xl font-semibold mb-6">Top Achievements</h2>
       </BlurIn>
       <div className="grid md:grid-cols-2 gap-6 mb-16 items-stretch">
         {ACHIEVEMENTS.map((achievement, index) => (
           <BoxReveal key={achievement.title} delay={0.6 + index * 0.15} width="100%">
             <div
-              className="p-6 md:p-8 rounded-2xl border-[.5px] border-zinc-600 hover:border-zinc-400 transition-all duration-300 h-full flex flex-col"
+              className="p-6 md:p-8 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 hover:border-zinc-400 dark:hover:border-zinc-400 transition-all duration-300 h-full flex flex-col"
               style={{ backdropFilter: "blur(2px)" }}
             >
               <div className="flex items-start justify-between mb-4">
@@ -141,7 +140,7 @@ function Page() {
               </div>
               <h3 className="text-xl font-semibold mb-1">{achievement.title}</h3>
               <span className="text-xs text-zinc-500 mb-4">{achievement.year}</span>
-              <p className="text-zinc-400 leading-relaxed text-sm mt-auto">{achievement.description}</p>
+              <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed text-sm mt-auto">{achievement.description}</p>
             </div>
           </BoxReveal>
         ))}
@@ -150,34 +149,34 @@ function Page() {
       {/* Journey */}
       <BlurIn delay={1.0}>
         <div
-          className="p-8 md:p-10 rounded-2xl border-[.5px] border-zinc-600"
+          className="p-8 md:p-10 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600"
           style={{ backdropFilter: "blur(2px)" }}
         >
           <div className="flex items-center gap-3 mb-6">
             <Star size={28} className="text-purple-400" />
             <h2 className="text-2xl font-semibold">The Journey</h2>
           </div>
-          <div className="space-y-4 text-zinc-400 leading-relaxed">
+          <div className="space-y-4 text-zinc-500 dark:text-zinc-400 leading-relaxed">
             <p>
-              It started with a simple question — <strong className="text-zinc-200">&quot;what can I build in 24 hours?&quot;</strong> 
+              It started with a simple question — <strong className="text-zinc-800 dark:text-zinc-200">&quot;what can I build in 24 hours?&quot;</strong> 
               That curiosity turned into an obsession. 25+ hackathons later, it&apos;s not just a hobby — 
               it&apos;s shaped how I think, how I code, and how I solve problems under pressure.
             </p>
             <p>
-              Every hackathon taught me something different. Some taught me how to <strong className="text-zinc-200">ship fast without breaking things</strong>. 
-              Some taught me how to <strong className="text-zinc-200">pitch an idea to a room full of judges</strong> in under 3 minutes. 
+              Every hackathon taught me something different. Some taught me how to <strong className="text-zinc-800 dark:text-zinc-200">ship fast without breaking things</strong>. 
+              Some taught me how to <strong className="text-zinc-800 dark:text-zinc-200">pitch an idea to a room full of judges</strong> in under 3 minutes. 
               And some just taught me that chai at 3am hits different when you&apos;re debugging a production bug before demo day.
             </p>
             <p>
-              I&apos;ve built a <strong className="text-zinc-200">mental health chatbot</strong> that understood emotions, 
-              an <strong className="text-zinc-200">emergency ambulance platform</strong> that could save lives, 
-              a <strong className="text-zinc-200">zero waste initiative</strong> for Delhi, and a lot more — 
+              I&apos;ve built a <strong className="text-zinc-800 dark:text-zinc-200">mental health chatbot</strong> that understood emotions, 
+              an <strong className="text-zinc-800 dark:text-zinc-200">emergency ambulance platform</strong> that could save lives, 
+              a <strong className="text-zinc-800 dark:text-zinc-200">zero waste initiative</strong> for Delhi, and a lot more — 
               each one solving a real problem, each one pushing me further than the last.
             </p>
             <p>
-              Reaching the finals of <strong className="text-zinc-200">Smart India Hackathon 2024</strong>, 
-              winning the <strong className="text-zinc-200">Industrial Ideathon 2025</strong>, 
-              finishing in the <strong className="text-zinc-200">Top 30 at Hack4Delhi</strong> — 
+              Reaching the finals of <strong className="text-zinc-800 dark:text-zinc-200">Smart India Hackathon 2024</strong>, 
+              winning the <strong className="text-zinc-800 dark:text-zinc-200">Industrial Ideathon 2025</strong>, 
+              finishing in the <strong className="text-zinc-800 dark:text-zinc-200">Top 30 at Hack4Delhi</strong> — 
               these aren&apos;t just lines on a resume. They&apos;re proof that consistency and curiosity compound over time.
             </p>
             <p>

@@ -48,12 +48,6 @@ const CONTACT_LINKS = [
     icon: <FaEnvelope height={"50px"} />,
   },
   {
-    name: "Phone",
-    content: "1234567890",
-    href: "tel:1234567890",
-    icon: <FaPhone height={"50px"} />,
-  },
-  {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/aryan-singh-thakur-12a422281/",
     content: "/aryan-singh-thakur",
@@ -233,37 +227,37 @@ function Page() {
     setToolsLoaded(true);
   }, []);
   return (
-    <div className="container mx-auto px-4 md:px-[50px] xl:px-[200px] text-zinc-300 pt-20 pb-20">
+    <div className="container mx-auto px-4 md:px-[50px] xl:px-[200px] text-foreground pt-20 pb-20">
       <div className="flex flex-col lg:flex-row gap-5">
         <aside className="w-full md:basis-1/4">
           <div
-            className="p-4 md:p-8 lg:p-10 rounded-2xl border-[.5px] border-zinc-600"
+            className="p-4 md:p-8 lg:p-10 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600"
             style={{
               backdropFilter: "blur(2px)",
             }}
           >
             <div className="flex flex-row lg:flex-col items-center">
-              <div className="flex justify-center items-center lg:w-full lg:aspect-square bg-zinc-800 rounded-xl lg:mb-5">
+              <div className="flex justify-center items-center lg:w-full lg:aspect-square bg-zinc-200 dark:bg-zinc-800 rounded-xl lg:mb-5">
                 <img
-                  className="rounded-full p-4 lg:p-10 w-[100px] md:w-[150px] lg:w-[200px] aspect-square  bg-zinc-800"
+                  className="rounded-full p-4 lg:p-10 w-[100px] md:w-[150px] lg:w-[200px] aspect-square bg-zinc-200 dark:bg-zinc-800"
                   alt="me"
                   src="/assets/me.jpg"
                 />
               </div>
               <div className="flex flex-col gap-3 lg:items-center ml-10 md:ml-20 lg:ml-0">
                 <p className="text-center text-xl">Aryan Singh Thakur</p>
-                <div className="text-xs bg-zinc-700 w-fit px-3 py-1 rounded-full">
+                <div className="text-xs bg-zinc-200 dark:bg-zinc-700 w-fit px-3 py-1 rounded-full">
                   Web Developer
                 </div>
               </div>
             </div>
             <div className="hidden lg:block">
-              <hr className="my-10 border-zinc-600" />
+              <hr className="my-10 border-zinc-300 dark:border-zinc-600" />
               <ul className="flex flex-col gap-3">
                 {CONTACT_LINKS.map((link) => (
                   <li key={link.name}>
                     <a
-                      className="flex items-center px-3 gap-3 w-full h-12 border-zinc-700 bg-zinc-800 hover:border-zinc-600 border-[.5px] rounded-md "
+                      className="flex items-center px-3 gap-3 w-full h-12 border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 border-[.5px] rounded-md"
                       href={link.href}
                     >
                       <div className="w-8">{link.icon}</div>
@@ -282,21 +276,15 @@ function Page() {
         </aside>
         <main className="basis-3/4 w-[500px]">
           <div
-            className="p-10 border-[.5px] rounded-md border-zinc-600"
+            className="p-10 border-[.5px] rounded-md border-zinc-300 dark:border-zinc-600"
             style={{ backdropFilter: "blur(2px)" }}
           >
             <h1 className="text-3xl mb-10 lg:md-20">About me</h1>
             <p className="mb-10 text-roboto">
-              Hey there! I&apos;m Aryan, a Fullstack developer passionate about
-              creating meaningful digital experiences. With great in Web
-              development, I thrive on turning ideas into reality through coding
-              and design. My journey began with a fascination for technology and
-              a drive to make a positive impact.
+              Hey there! I&apos;m Aryan Singh Thakur, a Full-Stack Developer from Delhi, India. I&apos;m a BCA student who loves building real-world web experiences that are fast, clean, and actually useful. My stack revolves around React, Next.js, Node.js, and TypeScript — and I genuinely enjoy the whole process, from idea to deployment.
             </p>
             <p className="mb-10">
-              When I&apos;m not coding, you can find me [Your
-              Interests/Hobbies], exploring new technologies, or sipping coffee
-              while brainstorming my next project.
+              I&apos;ve competed in hackathons like Smart India Hackathon (Finalist), Hack4Delhi (Top 30), and won the Industrial Ideathon — each one pushing me to build better and think faster. When I&apos;m not coding, I&apos;m either exploring new tech, sipping coffee, or brainstorming the next thing I want to build. Open to freelance work and cool collaborations.
             </p>
             <h1 className="text-3xl mb-10 lg:md-20">Stuff I use</h1>
             <div className="mb-5">
