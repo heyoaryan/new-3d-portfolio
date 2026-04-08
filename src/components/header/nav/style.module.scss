@@ -4,14 +4,17 @@
   .wrapper {
     position: relative;
     display: flex;
-    gap: 50px;
-    margin-bottom: 12px; // prev 80px
+    gap: 20px;
+    margin-bottom: 12px;
+    padding: 0 15px;
   }
 
   .container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex: 1;
+    min-width: 0;
   }
 }
 
@@ -20,6 +23,8 @@
     .wrapper {
       margin-bottom: 0px;
       justify-content: space-between;
+      gap: 50px;
+      padding: 0;
     }
   }
 }

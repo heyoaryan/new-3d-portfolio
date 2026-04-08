@@ -13,8 +13,8 @@
     margin: 0px;
     display: flex;
     overflow: hidden;
-    font-size: 32px;
-    padding-right: 30px;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    padding-right: 20px;
     padding-top: 10px;
     font-weight: 350;
   }

@@ -77,27 +77,27 @@ function Page() {
       </BlurIn>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-16">
         {HACKATHON_STATS.map((stat, index) => (
           <BoxReveal key={stat.label} delay={0.3 + index * 0.1} width="100%">
             <div
-              className="p-5 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 text-center flex flex-col items-center gap-2"
+              className="p-4 sm:p-5 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 text-center flex flex-col items-center gap-2"
               style={{ backdropFilter: "blur(2px)" }}
             >
               {stat.icon}
-              <p className="text-3xl font-bold">{stat.value}</p>
-              <p className="text-zinc-500 text-xs">{stat.label}</p>
+              <p className="text-2xl sm:text-3xl font-bold">{stat.value}</p>
+              <p className="text-zinc-500 text-xs leading-tight">{stat.label}</p>
             </div>
           </BoxReveal>
         ))}
       </div>
 
       {/* Marquee Images */}
-      <div className="mb-12 overflow-hidden space-y-4">
+      <div className="mb-12 overflow-hidden space-y-4 -mx-4 sm:-mx-6 md:-mx-[50px] xl:-mx-[200px]">
         {/* Row 1 - scrolls left */}
         <div className="flex w-max animate-marquee-left gap-4">
           {[...row1, ...row1].map((img, i) => (
-            <div key={i} className="relative w-64 h-40 rounded-xl overflow-hidden border border-zinc-300 dark:border-zinc-700 flex-shrink-0 group">
+            <div key={i} className="relative w-48 h-32 sm:w-64 sm:h-40 rounded-xl overflow-hidden border border-zinc-300 dark:border-zinc-700 flex-shrink-0 group">
               <Image
                 src={`/images/${img}`}
                 alt={img.replace(".png", "")}
@@ -110,7 +110,7 @@ function Page() {
         {/* Row 2 - scrolls right */}
         <div className="flex w-max animate-marquee-right gap-4">
           {[...row2, ...row2].map((img, i) => (
-            <div key={i} className="relative w-64 h-40 rounded-xl overflow-hidden border border-zinc-300 dark:border-zinc-700 flex-shrink-0 group">
+            <div key={i} className="relative w-48 h-32 sm:w-64 sm:h-40 rounded-xl overflow-hidden border border-zinc-300 dark:border-zinc-700 flex-shrink-0 group">
               <Image
                 src={`/images/${img}`}
                 alt={img.replace(".png", "")}
@@ -125,11 +125,11 @@ function Page() {
       <BlurIn delay={0.5}>
         <h2 className="text-2xl font-semibold mb-6">Top Achievements</h2>
       </BlurIn>
-      <div className="grid md:grid-cols-2 gap-6 mb-16 items-stretch">
+      <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-16 items-stretch">
         {ACHIEVEMENTS.map((achievement, index) => (
           <BoxReveal key={achievement.title} delay={0.6 + index * 0.15} width="100%">
             <div
-              className="p-6 md:p-8 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 hover:border-zinc-400 dark:hover:border-zinc-400 transition-all duration-300 h-full flex flex-col"
+              className="p-5 sm:p-6 md:p-8 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600 hover:border-zinc-400 dark:hover:border-zinc-400 transition-all duration-300 h-full flex flex-col"
               style={{ backdropFilter: "blur(2px)" }}
             >
               <div className="flex items-start justify-between mb-4">
@@ -149,14 +149,14 @@ function Page() {
       {/* Journey */}
       <BlurIn delay={1.0}>
         <div
-          className="p-8 md:p-10 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600"
+          className="p-5 sm:p-8 md:p-10 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600"
           style={{ backdropFilter: "blur(2px)" }}
         >
           <div className="flex items-center gap-3 mb-6">
-            <Star size={28} className="text-purple-400" />
-            <h2 className="text-2xl font-semibold">The Journey</h2>
+            <Star size={24} className="text-purple-400 flex-shrink-0" />
+            <h2 className="text-xl sm:text-2xl font-semibold">The Journey</h2>
           </div>
-          <div className="space-y-4 text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <div className="space-y-4 text-zinc-500 dark:text-zinc-400 leading-relaxed text-sm sm:text-base">
             <p>
               It started with a simple question — <strong className="text-zinc-800 dark:text-zinc-200">&quot;what can I build in 24 hours?&quot;</strong> 
               That curiosity turned into an obsession. 25+ hackathons later, it&apos;s not just a hobby — 

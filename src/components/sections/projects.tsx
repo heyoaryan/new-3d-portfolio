@@ -14,22 +14,25 @@ import Link from "next/link";
 import SmoothScroll from "../smooth-scroll";
 import projects, { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
+import { BoxReveal } from "../reveal-animations";
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="max-w-7xl mx-auto md:h-[130vh]">
+    <section id="projects" className="max-w-7xl mx-auto px-4 sm:px-6">
       <Link href={"#projects"}>
-        <h2
-          className={cn(
-            "bg-clip-text text-4xl text-center text-transparent md:text-7xl pt-16",
-            "bg-gradient-to-b from-black/80 to-black/50",
-            "dark:bg-gradient-to-b dark:from-white/80 dark:to-white/20 dark:bg-opacity-50 mb-32"
-          )}
-        >
-          Projects
-        </h2>
+        <BoxReveal width="100%">
+          <h2
+            className={cn(
+              "bg-clip-text text-4xl text-center text-transparent md:text-7xl pt-16",
+              "bg-gradient-to-b from-black/80 to-black/50",
+              "dark:bg-gradient-to-b dark:from-white/80 dark:to-white/20 dark:bg-opacity-50 mb-16 md:mb-32"
+            )}
+          >
+            Projects
+          </h2>
+        </BoxReveal>
       </Link>
-      <div className="grid grid-cols-1 md:grid-cols-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {projects.map((project, index) => (
           <Modall key={project.src} project={project} />
         ))}
@@ -41,21 +44,21 @@ const Modall = ({ project }: { project: Project }) => {
   return (
     <div className="flex items-center justify-center">
       <Modal>
-        <ModalTrigger className="bg-transparent flex justify-center group/modal-btn">
+        <ModalTrigger className="bg-transparent flex justify-center group/modal-btn w-full">
           <div
-            className="relative w-[400px] h-auto rounded-lg overflow-hidden"
+            className="relative w-full rounded-lg overflow-hidden"
             style={{ aspectRatio: "3/2" }}
           >
             <Image
-              className="absolute w-full h-full top-0 left-0 hover:scale-[1.05] transition-all"
+              className="absolute w-full h-full top-0 left-0 hover:scale-[1.05] transition-all object-cover"
               src={project.src}
               alt={project.title}
-              width={300}
-              height={300}
+              width={600}
+              height={400}
             />
             <div className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-black via-black/85 to-transparent pointer-events-none">
-              <div className="flex flex-col h-full items-start justify-end p-6">
-                <div className="text-lg text-left">{project.title}</div>
+              <div className="flex flex-col h-full items-start justify-end p-4 sm:p-6">
+                <div className="text-base sm:text-lg text-left">{project.title}</div>
                 <div className="text-xs bg-white text-black rounded-lg w-fit px-2">
                   {project.category}
                 </div>
@@ -63,7 +66,7 @@ const Modall = ({ project }: { project: Project }) => {
             </div>
           </div>
         </ModalTrigger>
-        <ModalBody className="md:max-w-4xl md:max-h-[80%] overflow-auto">
+        <ModalBody className="w-[95vw] max-w-4xl max-h-[90vh] overflow-auto">
           <SmoothScroll isInsideModal={true}>
             <ModalContent>
               <ProjectContents project={project} />

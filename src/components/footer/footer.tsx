@@ -11,12 +11,12 @@ function Footer() {
   const year = new Date().getFullYear();
   const pathname = usePathname();
   return (
-    <footer className="flex w-full shrink-0 flex-col items-center gap-2 border-t border-border px-4 py-6 sm:flex-row md:px-6 sm:justify-between">
-      <p className="text-xs text-gray-500 dark:text-gray-400">
+    <footer className="flex w-full shrink-0 flex-col items-center gap-4 border-t border-border px-4 py-6 sm:flex-row md:px-6 sm:justify-between flex-wrap">
+      <p className="text-xs text-gray-500 dark:text-gray-400 text-center sm:text-left">
         © {year} {config.author}. All rights reserved.
       </p>
       <SocialMediaButtons />
-      <nav className="flex gap-4 sm:gap-6 z-10">
+      <nav className="flex flex-wrap justify-center gap-2 sm:gap-4 sm:gap-6 z-10">
         {footer.filter(link => link.href !== pathname).map((link, index) => {
           const { title, href } = link;
 

@@ -229,26 +229,41 @@ function Page() {
   return (
     <div className="container mx-auto px-4 md:px-[50px] xl:px-[200px] text-foreground pt-20 pb-20">
       <div className="flex flex-col lg:flex-row gap-5">
-        <aside className="w-full md:basis-1/4">
+        <aside className="w-full lg:w-[260px] lg:flex-shrink-0">
           <div
-            className="p-4 md:p-8 lg:p-10 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600"
+            className="p-4 md:p-6 lg:p-8 rounded-2xl border-[.5px] border-zinc-300 dark:border-zinc-600"
             style={{
               backdropFilter: "blur(2px)",
             }}
           >
-            <div className="flex flex-row lg:flex-col items-center">
-              <div className="flex justify-center items-center lg:w-full lg:aspect-square bg-zinc-200 dark:bg-zinc-800 rounded-xl lg:mb-5">
+            <div className="flex flex-row lg:flex-col items-center gap-4 lg:gap-0">
+              <div className="flex-shrink-0 flex justify-center items-center lg:w-full bg-zinc-200 dark:bg-zinc-800 rounded-xl lg:mb-5">
                 <img
-                  className="rounded-full p-4 lg:p-10 w-[100px] md:w-[150px] lg:w-[200px] aspect-square bg-zinc-200 dark:bg-zinc-800"
+                  className="rounded-full p-3 lg:p-8 w-[90px] sm:w-[110px] lg:w-full aspect-square bg-zinc-200 dark:bg-zinc-800 object-cover"
                   alt="me"
                   src="/assets/me.jpg"
                 />
               </div>
-              <div className="flex flex-col gap-3 lg:items-center ml-10 md:ml-20 lg:ml-0">
-                <p className="text-center text-xl">Aryan Singh Thakur</p>
+              <div className="flex flex-col gap-2 lg:items-center lg:mt-2">
+                <p className="text-lg lg:text-center font-medium">Aryan Singh Thakur</p>
                 <div className="text-xs bg-zinc-200 dark:bg-zinc-700 w-fit px-3 py-1 rounded-full">
                   Web Developer
                 </div>
+              </div>
+            </div>
+            {/* Contact links — visible on mobile too as a row */}
+            <div className="mt-4 lg:hidden">
+              <div className="flex flex-wrap gap-2">
+                {CONTACT_LINKS.map((link) => (
+                  <a
+                    key={link.name}
+                    className="flex items-center gap-2 px-3 py-2 border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 border-[.5px] rounded-md text-sm"
+                    href={link.href}
+                  >
+                    <span className="text-base">{link.icon}</span>
+                    <span>{link.name}</span>
+                  </a>
+                ))}
               </div>
             </div>
             <div className="hidden lg:block">
@@ -274,19 +289,19 @@ function Page() {
             </div>
           </div>
         </aside>
-        <main className="basis-3/4 w-[500px]">
+        <main className="flex-1 min-w-0">
           <div
-            className="p-10 border-[.5px] rounded-md border-zinc-300 dark:border-zinc-600"
+            className="p-5 sm:p-6 md:p-10 border-[.5px] rounded-md border-zinc-300 dark:border-zinc-600"
             style={{ backdropFilter: "blur(2px)" }}
           >
-            <h1 className="text-3xl mb-10 lg:md-20">About me</h1>
-            <p className="mb-10 text-roboto">
+            <h1 className="text-2xl sm:text-3xl mb-6 md:mb-10">About me</h1>
+            <p className="mb-6 md:mb-10 text-sm sm:text-base leading-relaxed">
               Hey there! I&apos;m Aryan Singh Thakur, a Full-Stack Developer from Delhi, India. I&apos;m a BCA student who loves building real-world web experiences that are fast, clean, and actually useful. My stack revolves around React, Next.js, Node.js, and TypeScript — and I genuinely enjoy the whole process, from idea to deployment.
             </p>
-            <p className="mb-10">
+            <p className="mb-6 md:mb-10 text-sm sm:text-base leading-relaxed">
               I&apos;ve competed in hackathons like Smart India Hackathon (Finalist), Hack4Delhi (Top 30), and won the Industrial Ideathon — each one pushing me to build better and think faster. When I&apos;m not coding, I&apos;m either exploring new tech, sipping coffee, or brainstorming the next thing I want to build. Open to freelance work and cool collaborations.
             </p>
-            <h1 className="text-3xl mb-10 lg:md-20">Stuff I use</h1>
+            <h1 className="text-2xl sm:text-3xl mb-6 md:mb-10">Stuff I use</h1>
             <div className="mb-5">
               {!toolsLoaded ? (
                 <p className="h-[100px]"></p>
@@ -298,7 +313,12 @@ function Page() {
                     autoplay: true,
                     pagination: false,
                     speed: 2000,
-                    perPage: 5,
+                    perPage: 3,
+                    breakpoints: {
+                      640: { perPage: 3 },
+                      768: { perPage: 4 },
+                      1024: { perPage: 5 },
+                    },
                     perMove: 1,
                     rewind: true,
                     easing: "cubic-bezier(0.25, 1, 0.5, 1)",

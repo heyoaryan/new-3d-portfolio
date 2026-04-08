@@ -24,8 +24,8 @@ const HeroSection = () => {
           className={cn(
             "h-[calc(100dvh-3rem)] md:h-[calc(100dvh-4rem)] z-[2]",
             "col-span-1",
-            "flex flex-col justify-start md:justify-center items-center md:items-start",
-            "pt-28 sm:pt-0 sm:pb-32 md:p-24 lg:p-40 xl:p-48"
+            "flex flex-col justify-center items-center md:items-start",
+            "px-6 sm:px-10 md:px-16 lg:px-28 xl:px-40"
           )}
         >
           {!isLoading && (
@@ -34,12 +34,11 @@ const HeroSection = () => {
                 <BlurIn delay={0.7}>
                   <p
                     className={cn(
-                      "md:self-start mt-4 font-thin text-md text-slate-500 dark:text-zinc-400 ml-3",
-                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
+                      "md:self-start mt-4 font-thin text-base text-slate-500 dark:text-zinc-400 ml-1",
+                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text"
                     )}
                   >
                     Hi, I am
-                    <br className="md:hidden" />
                   </p>
                 </BlurIn>
                 <BlurIn delay={1}>
@@ -47,8 +46,8 @@ const HeroSection = () => {
                     <TooltipTrigger asChild>
                       <h1
                         className={cn(
-                          "font-thin text-6xl text-transparent text-slate-800 ml-1 text-left",
-                          "cursor-default text-edge-outline font-display sm:text-7xl md:text-9xl "
+                          "font-thin text-[clamp(3.5rem,12vw,8rem)] text-transparent text-slate-800 ml-1 text-left",
+                          "cursor-default text-edge-outline font-display"
                         )}
                       >
                         Aryan
@@ -59,8 +58,9 @@ const HeroSection = () => {
                       </h1>
                     </TooltipTrigger>
                     <TooltipContent
-                      side="right"
-                      className="dark:bg-white dark:text-black"
+                      side="bottom"
+                      sideOffset={8}
+                      className="dark:bg-white dark:text-black max-w-[200px] text-center"
                     >
                       theres something waiting for you in devtools
                     </TooltipContent>
@@ -70,36 +70,35 @@ const HeroSection = () => {
                 <BlurIn delay={1.2}>
                   <p
                     className={cn(
-                      "md:self-start md:mt-4 font-thin text-md text-slate-500 dark:text-zinc-400 ml-3",
-                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
+                      "md:self-start md:mt-4 font-thin text-base text-slate-500 dark:text-zinc-400 ml-1",
+                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text"
                     )}
                   >
                     A Full Stack Developer
                   </p>
                 </BlurIn>
               </div>
-              <div className="mt-8 md:ml-2 flex flex-col gap-3">
+              <div className="mt-8 ml-1 flex flex-col gap-3 w-full max-w-xs">
                 <Link
                   href={
                     "https://drive.google.com/file/d/1zndiT1uvDdlryOleM4cJH6Vj8nqE0lFQ/view?usp=share_link"
                   }
                   target="_blank"
-                  className="flex-1"
                 >
-                  <BoxReveal delay={2} width="100%" >
+                  <BoxReveal delay={2} width="100%">
                     <Button className="flex items-center gap-2 w-full">
                       <File size={24} />
                       <p>Resume</p>
                     </Button>
                   </BoxReveal>
                 </Link>
-                <div className="md:self-start flex gap-3">
+                <div className="flex gap-3">
                   <Tooltip delayDuration={300}>
                     <TooltipTrigger asChild>
-                      <Link href={"#contact"}>
+                      <Link href={"#contact"} className="flex-1">
                         <Button
                           variant={"outline"}
-                          className="block w-full overflow-hidden"
+                          className="w-full"
                         >
                           Hire Me
                         </Button>
